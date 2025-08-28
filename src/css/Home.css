@@ -1,0 +1,90 @@
+/* src/pages/Home.css */
+
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  width: auto;
+  max-width: 800px;
+  }
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2563eb; /* blue */
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons a {
+  margin: 0 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.hero-buttons .primary {
+  background: #2563eb;
+  color: white;
+}
+
+.hero-buttons .primary:hover {
+  background: #1e3a8a;
+}
+
+.hero-buttons .secondary {
+  border: 2px solid #2563eb;
+  color: #2563eb;
+}
+
+.hero-buttons .secondary:hover {
+  background: #eff6ff;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.feature-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
