@@ -1,4 +1,4 @@
-const Equipment = () => {
+const Marketplace = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Badminton Equipment</h2>
@@ -10,4 +10,4 @@ const Equipment = () => {
     </div>
   );
 };
-export default Equipment;
+export default Marketplace;

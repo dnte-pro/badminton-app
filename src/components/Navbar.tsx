@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Sun, Moon, User, LogOut, Settings } from "lucide-react";
 import "../css/Navbar.css";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Toggle dark mode and persist choice
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark-mode");
@@ -14,32 +18,66 @@ const Navbar = () => {
     }
   }, [darkMode]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header className="header">
-      {/* Contact button moved left */}
-      <button className="gradient-btn left-btn">Contact Me</button>
-
+      {/* Logo on far left */}
       <a href="#home" className="logo">
         Shuttle<span>Hub</span>
       </a>
 
-      <i className="bx bx-menu" id="menu-icon"></i>
-
+      {/* Navigation links in center */}
       <nav className="navbar">
-        <Link to="/home">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/courts">Courts</Link>
-        <Link to="/equipment">Marketplace</Link>
-        <Link to="/booking">Booking</Link>
-        <Link to="/profile">Profile</Link>
+        <Link to="/marketplace">Marketplace</Link>
+        <Link to="/tournaments">Tournaments</Link>        
+        <Link to="/coaches">Coaches</Link>
+        <Link to="/about">About us</Link>
+        <Link to="/contact">Contact</Link>
       </nav>
 
-      {/* Dark/Light Mode Toggle */}
-      <button 
-        className="toggle-btn" 
-        onClick={() => setDarkMode(!darkMode)}
-      >
-        {darkMode ? "🌙 Dark" : "☀️ Light"}
-      </button>
+      {/* Right actions (toggle + profile) */}
+      <div className="nav-actions">
+        {/* Dark/Light toggle */}
+        <button className="toggle-btn" onClick={toggleDarkMode}>
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+
+        {/* Profile */}
+        <div className="profile-container" ref={dropdownRef}>
+          <span
+            className="profile-icon"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
+            <User size={24} />
+          </span>
+
+          {dropdownOpen && (
+            <div className="profile-dropdown">
+              <Link to="/profile">
+                <User size={18} /> Profile
+              </Link>
+              <Link to="/settings">
+                <Settings size={18} /> Settings
+              </Link>
+              <button className="logout-btn">
+                <LogOut size={18} /> Logout
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </header>
   );
 };

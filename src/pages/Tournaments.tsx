@@ -1,4 +1,4 @@
-const Booking = () => {
+const Tournaments = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold">Book a Court</h2>
@@ -6,4 +6,4 @@ const Booking = () => {
     </div>
   );
 };
-export default Booking;
+export default Tournaments;
